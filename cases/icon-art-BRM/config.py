@@ -35,8 +35,8 @@ exe_dir = "/store/empa/em05/executables"
 case_dir = os.path.join(chain_src_dir, 'cases', casename)
 
 # PREPARE_DATA ---------------------------------------------------------------
+input_root2 = '/users/kivanova/icon1.config'
 input_root = '/store/empa/em05/input_iconart_processing_chain_example/'
-
 input_root_meteo = '/store/empa/em05/dbrunner/icon-art/meteo'
 meteo_prefix = 'ifs_'
 meteo_nameformat = meteo_prefix + '%Y%m%d%H'
@@ -56,21 +56,20 @@ icontools_runjobs = [
 
 # Icontools executables
 #icontools_dir = '/project/s903/mjaehn/spack-install/daint/icontools/master/cce/ldcbgsjjzq2p73xbei7ws4wce5ivzxer/bin/'
-icontools_dir = '/scratch/snx3000/msteiner/spack-stages/daint/spack-stage-icontools-master-t524rnfa5sfyn4rbvarypyzwae4jg46d/spack-src/icontools'
+icontools_dir = '/scratch/snx3000/msteiner/spack-install/daint/icontools/c2sm-master/gcc/5etk6tlbwifdrxkdeg4zxzm26d4pczas/bin/iconremap'
 iconremap_bin = os.path.join(icontools_dir, "iconremap")
 iconsub_bin = os.path.join(icontools_dir, "iconsub")
 
 # Input data for runscript----------------------------------------------------
 # Grid
 input_root_grid = os.path.join(input_root, 'grids')
-radiation_grid_filename = os.path.join(input_root_grid,
-                                       "testcase_DOM01.parent.nc")
-dynamics_grid_filename = os.path.join(input_root_grid, "testcase_DOM01.nc")
+radiation_grid_filename = os.path.join(input_root2,
+                                       "ICON-1E_DOM01.parent.nc")
+dynamics_grid_filename = os.path.join(input_root2, "ICON-1E_DOM01.nc")
 map_file_latbc = os.path.join(input_root_grid, "map_file.latbc")
 extpar_filename = os.path.join(
-    input_root_grid, "external_parameter_icon_testcase_DOM01_tiles.nc")
-lateral_boundary_grid = os.path.join(input_root_grid,
-                                     "lateral_boundary.grid.nc")
+    input_root2, "external_parameter_mch_ICON_1E_R19B08_DOM1.nc")
+lateral_boundary_grid = "/scratch/snx3000/kivanova/processing_chain/icon-art-BRM/2018041500_0_24/icon/input/grid/lateral_boundary.grid.grid.grid.nc"
 
 input_root_rad = os.path.join(input_root, 'rad')
 cldopt_filename = os.path.join(input_root_rad, 'rrtm_cldopt.nc')
@@ -98,7 +97,8 @@ art_input_folder = os.path.join(input_root, 'ART')
 # SIMULATION =================================================================
 # ICON -----------------------------------------------------------------------
 # Executable
-icon_bin = os.path.join(exe_dir, "icon-kit-art_20211018")
+icon_bin ="/scratch/snx3000/kivanova/icon-kit-art/bin/icon"
+#os.path.join(exe_dir, "icon-kit-art_20211018")
 
 # Namelists and slurm runscript templates
 icon_runjob = os.path.join(case_dir, 'icon_runjob.cfg')
@@ -132,7 +132,7 @@ reference_dir = os.path.join(input_root, "reference_output")
 # If the output file that gets compared to the reference is not at the location
 # that post_icon copied it to, give the path to it here. Else leave it 'None'
 #output_dir = None
-output_dir = os.path.join(work_root, casename, '2018101500_0_24', 'icon',
+output_dir = os.path.join(work_root, casename, '2018041500_0_24', 'icon',
                           'output')
 
 # variables_to_check is a dict() with a tuple() of filenames as key and a list
